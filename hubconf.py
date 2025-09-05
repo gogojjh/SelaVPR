@@ -5,17 +5,16 @@ import network
 import argparse
 
 def trained_model(domain):
-    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    args = parser.parse_args()
+    args = argparse.Namespace()
     args.registers = False
     args.foundation_model_path = None
     args.features_dim = 1024
     if domain == "pitts30k":
-        args.resume = 'https://github.com/gogojjh/SelaVPR/releases/download/v2.0.0/SelaVPR_pitts30k.pth'
+        args.resume = 'https://github.com/gogojjh/SelaVPR/releases/download/v1.0.0/SelaVPR_pitts30k.pth'
     elif domain == "msls":
-        args.resume = 'https://github.com/gogojjh/SelaVPR/releases/download/v2.0.0/SelaVPR_msls.pth'
-    elif domain == "msls":
-        args.resume = 'https://github.com/gogojjh/SelaVPR/releases/download/v2.0.0/SelaVPR_msls.pth'
+        args.resume = 'https://github.com/gogojjh/SelaVPR/releases/download/v1.0.0/SelaVPR_msls.pth'
+    else:
+        raise ValueError(f"Unknown domain: {domain}")
 
     # Load model
     model = network.GeoLocalizationNet(args)
